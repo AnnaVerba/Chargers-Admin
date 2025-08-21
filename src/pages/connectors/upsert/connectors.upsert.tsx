@@ -4,14 +4,18 @@
 
 import { useForm } from '@refinedev/antd';
 import { useSelector } from 'react-redux';
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button, Select, InputNumber } from 'antd';
 import React, { useCallback, useState } from 'react';
 
 import { ResourceType } from '@util/auth';
 import { getSerializedValues } from '@util/middleware';
 import { ConnectorDto } from '../../../dtos/connector.dto';
 import { CONNECTOR_CREATE_MUTATION, CONNECTOR_EDIT_MUTATION } from '../queries';
-import { ErrorCodes, ConnectorStatusEnumType } from '@OCPP2_0_1';
+import {
+  ErrorCodes,
+  ConnectorStatusEnumType,
+  ConnectorEnumType,
+} from '@OCPP2_0_1'; // Додаємо ConnectorEnumType
 import { getSelectedChargingStation } from '../../../redux/selected.charging.station.slice';
 
 const { Option } = Select;
@@ -39,6 +43,9 @@ export const ConnectorsUpsert: React.FC<ConnectorUpsertProps> = ({
         ? connector.stationId
         : selectedChargingStation?.id || '',
     status: connector !== null ? connector.status : undefined,
+    type: connector !== null ? connector.type : undefined,
+    minPower: connector !== null ? connector.minPower : undefined,
+    maxPower: connector !== null ? connector.maxPower : undefined,
     vendorId: connector !== null ? connector.vendorId : undefined,
     errorCode: connector !== null ? connector.errorCode : undefined,
     connectorId: connector !== null ? connector.connectorId : undefined,
@@ -62,6 +69,9 @@ export const ConnectorsUpsert: React.FC<ConnectorUpsertProps> = ({
         info: undefined,
         status: undefined,
         vendorId: undefined,
+        type: undefined,
+        minPower: undefined,
+        maxPower: undefined,
         errorCode: undefined,
         connectorId: undefined,
         vendorErrorCode: undefined,
@@ -108,6 +118,21 @@ export const ConnectorsUpsert: React.FC<ConnectorUpsertProps> = ({
       </Form.Item>
       <Form.Item label="Connector ID" name="connectorId">
         <Input type="text" id="connectorId" name="connectorId" required />
+      </Form.Item>
+      <Form.Item label="Connector Type" name="type">
+        <Select id="type" placeholder="Select a connector type">
+          {Object.values(ConnectorEnumType).map((type) => (
+            <Option key={type} value={type}>
+              {type}
+            </Option>
+          ))}
+        </Select>
+      </Form.Item>
+      <Form.Item label="Min Power (kW)" name="minPower">
+        <InputNumber id="minPower" min={0} style={{ width: '100%' }} />
+      </Form.Item>
+      <Form.Item label="Max Power (kW)" name="maxPower">
+        <InputNumber id="maxPower" min={0} style={{ width: '100%' }} />
       </Form.Item>
       <Form.Item label="Status" name="status">
         <Select id="status">

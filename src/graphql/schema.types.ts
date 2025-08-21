@@ -48,7 +48,6 @@ export type Scalars = {
   numeric: { input: any; output: any };
   timestamptz: { input: any; output: any };
 };
-
 export type Connectors = {
   id: Scalars['Int']['output'];
   stationId: Scalars['String']['output'];
@@ -58,6 +57,10 @@ export type Connectors = {
   info?: Maybe<Scalars['String']['output']>;
   vendorId?: Maybe<Scalars['String']['output']>;
   vendorErrorCode?: Maybe<Scalars['String']['output']>;
+  // Додані поля
+  type?: Maybe<Scalars['String']['output']>;
+  minPower?: Maybe<Scalars['Float']['output']>;
+  maxPower?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Connectors_Insert_Input = {
@@ -69,6 +72,10 @@ export type Connectors_Insert_Input = {
   info?: InputMaybe<Scalars['String']['input']>;
   vendorId?: InputMaybe<Scalars['String']['input']>;
   vendorErrorCode?: InputMaybe<Scalars['String']['input']>;
+  // Додані поля
+  type?: InputMaybe<Scalars['String']['input']>;
+  minPower?: InputMaybe<Scalars['Float']['input']>;
+  maxPower?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type Connectors_Bool_Exp = {
@@ -79,6 +86,9 @@ export type Connectors_Bool_Exp = {
   stationId?: InputMaybe<String_Comparison_Exp>;
   connectorId?: InputMaybe<Int_Comparison_Exp>;
   status?: InputMaybe<String_Comparison_Exp>;
+  type?: InputMaybe<String_Comparison_Exp>;
+  minPower?: InputMaybe<Int_Comparison_Exp>;
+  maxPower?: InputMaybe<Int_Comparison_Exp>;
   errorCode?: InputMaybe<String_Comparison_Exp>;
   info?: InputMaybe<String_Comparison_Exp>;
   vendorId?: InputMaybe<String_Comparison_Exp>;
@@ -94,6 +104,9 @@ export type Connectors_Order_By = {
   info?: InputMaybe<Order_By>;
   vendorId?: InputMaybe<Order_By>;
   vendorErrorCode?: InputMaybe<Order_By>;
+  type?: InputMaybe<Order_By>;
+  minPower?:InputMaybe<Order_By>;
+  maxPower?: InputMaybe<Order_By>;
 };
 
 export type Connectors_Set_Input = {
@@ -105,6 +118,9 @@ export type Connectors_Set_Input = {
   info?: InputMaybe<Scalars['String']['input']>;
   vendorId?: InputMaybe<Scalars['String']['input']>;
   vendorErrorCode?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+  minPower?: InputMaybe<Scalars['Float']['input']>;
+  maxPower?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type Connectors_Aggregate_Fields = {
@@ -137,6 +153,9 @@ export type Connectors_Max_Fields = {
   status?: Maybe<Scalars['String']['output']>;
   vendorErrorCode?: Maybe<Scalars['String']['output']>;
   vendorId?: Maybe<Scalars['String']['output']>;
+  type?:Maybe<Scalars['String']['output']>;
+  minPower?: Maybe<Scalars['Float']['output']>;
+  maxPower?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate min on columns */
@@ -149,6 +168,9 @@ export type Connectors_Min_Fields = {
   status?: Maybe<Scalars['String']['output']>;
   vendorErrorCode?: Maybe<Scalars['String']['output']>;
   vendorId?: Maybe<Scalars['String']['output']>;
+  type?:Maybe<Scalars['String']['output']>;
+  minPower?: Maybe<Scalars['Float']['output']>;
+  maxPower?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev on columns */

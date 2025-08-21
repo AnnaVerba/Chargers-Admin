@@ -83,6 +83,7 @@ const createAuthProvider = (
   // Return the auth provider implementation
   return {
     login: async ({ email, password }) => {
+      console.log('login', email, password);
       const response = await fetch(
         'http://localhost:8080/data/user/loginUser',
         {
@@ -91,8 +92,8 @@ const createAuthProvider = (
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            phone: email, // email у цьому випадку — номер телефону
-            code: password, // якщо бек приймає пароль
+            phone: email,
+            code: password,
           }),
         },
       );

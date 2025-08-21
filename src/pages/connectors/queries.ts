@@ -45,6 +45,9 @@ export const CONNECTOR_GET_QUERY = gql`
       errorCode
       id
       info
+      type
+      minPower
+      maxPower
       stationId
       status
       timestamp
@@ -63,6 +66,9 @@ export const CONNECTOR_CREATE_MUTATION = gql`
       errorCode
       id
       info
+      type
+      minPower
+      maxPower
       stationId
       status
       timestamp
@@ -80,6 +86,9 @@ export const CONNECTOR_EDIT_MUTATION = gql`
       createdAt
       errorCode
       id
+      type
+      minPower
+      maxPower
       info
       status
       vendorErrorCode

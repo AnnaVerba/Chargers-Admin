@@ -80,6 +80,7 @@ class SetVariablesData {
     gqlListQuery: {
       query: VARIABLE_LIST_BY_COMPONENT_QUERY,
       getQueryVariables: (record: SetVariablesData) => {
+        console.log('hhgg',record)
         return {
           mutability: 'ReadOnly',
           componentId: record.component?.id,
@@ -88,6 +89,7 @@ class SetVariablesData {
     },
   })
   @HiddenWhen((parentRecord: SetVariablesData) => {
+    console.log('hiden',parentRecord)
     return (
       parentRecord[SetVariablesDataProps.component] &&
       (parentRecord[SetVariablesDataProps.component][

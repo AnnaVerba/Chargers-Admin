@@ -186,10 +186,12 @@ export const CHARGING_STATIONS_GET_QUERY = gql`
         createdAt
         updatedAt
       }
-      ConnectorTypes: VariableAttributes(
-        where: { Variable: { name: { _eq: "ConnectorType" } } }
+      # Новий запит, що повертає унікальні типи конекторів
+      ConnectorTypes: Connectors(
+        where: { stationId: { _eq: $id } }
+        distinct_on: type
       ) {
-        value
+        value: type
       }
       Evses: VariableAttributes(
         distinct_on: evseDatabaseId
@@ -247,11 +249,13 @@ export const CHARGING_STATIONS_GET_QUERY = gql`
         vendorErrorCode
         createdAt
         updatedAt
+        type
+        minPower
+        maxPower
       }
     }
   }
 `;
-
 export const CHARGING_STATIONS_CREATE_MUTATION = gql`
   mutation ChargingStationsCreate($object: ChargingStations_insert_input!) {
     insert_ChargingStations_one(object: $object) {

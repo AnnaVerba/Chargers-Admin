@@ -22,6 +22,15 @@ export class ConnectorDto extends BaseDto {
   @IsNumber()
   connectorId!: number;
 
+  @IsString()
+  type!: string;
+
+  @IsNumber()
+  minPower?: number;
+
+  @IsNumber()
+  maxPower?: number;
+
   @IsOptional()
   status?: ConnectorStatusEnumType;
 

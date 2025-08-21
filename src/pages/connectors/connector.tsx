@@ -59,6 +59,15 @@ export class Connector extends BaseModel {
   vendorId?: string;
 
   @IsString()
+  type!: string;
+
+  @IsNumber()
+  minPower?: number;
+
+  @IsNumber()
+  maxPower?: number;
+
+  @IsString()
   @IsOptional()
   vendorErrorCode?: string;
 }
